@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Emberwake</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      font-family: Georgia, "Times New Roman", serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      background: radial-gradient(circle at 50% 70%, #783c26 0, #25172a 38%, #090914 100%);
+      color: #fff1cf;
+    }
+    main {
+      width: min(92vw, 720px);
+      text-align: center;
+    }
+    h1 {
+      margin: 0 0 10px;
+      font-size: clamp(3rem, 12vw, 7rem);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      text-shadow: 0 0 28px #ff9a4d;
+    }
+    p {
+      min-height: 3em;
+      margin: 0 auto 22px;
+      max-width: 540px;
+      color: #dcc49a;
+      font-size: clamp(1rem, 3vw, 1.25rem);
+    }
+    button {
+      border: 1px solid #eebc72;
+      border-radius: 999px;
+      padding: 14px 28px;
+      background: #a94d2b;
+      color: #fff6dc;
+      font: 700 1rem Georgia, "Times New Roman", serif;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      box-shadow: 0 8px 28px #5b1d1a;
+    }
+    button:hover { background: #c85d32; }
+    button:focus-visible { outline: 3px solid #fff1cf; outline-offset: 4px; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Emberwake</h1>
+    <p id="prompt">The last hearth still burns. Will you guard it until dawn?</p>
+    <button id="begin" type="button">Begin</button>
+  </main>
+  <script>
+    const begin = document.getElementById("begin");
+    const prompt = document.getElementById("prompt");
+    let stage = 0;
+    const scenes = [
+      "A silver wind moves through the Ashwood.",
+      "You carry one ember through the long night.",
+      "Dawn finds the path. The flame has awakened."
+    ];
+    begin.addEventListener("click", () => {
+      if (stage < scenes.length) {
+        prompt.textContent = scenes[stage++];
+        begin.textContent = stage === scenes.length ? "Reawaken" : "Continue";
+      } else {
+        stage = 0;
+        prompt.textContent = "The last hearth still burns. Will you guard it until dawn?";
+        begin.textContent = "Begin";
+      }
+    });
+  </script>
+</body>
+</html>
